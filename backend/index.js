@@ -9,11 +9,19 @@ const cors = require("cors");
 
 
 app.use(express.json());
-app.use(cors());
+
+// Replace with your frontend URL
+
+app.use(cors({
+    origin: "*",
+      methods:["POST","GET"],
+      credentials:true
+  })); 
 
 //Datebas Connection with MongoDB
 const dotenv = require("dotenv");
 dotenv.config(); // Ensure this line is added before using process.env
+
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
