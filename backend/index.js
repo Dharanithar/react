@@ -12,11 +12,9 @@ app.use(express.json());
 
 // Replace with your frontend URL
 
-app.use(cors({
-    origin: "*",
-      methods:["POST","GET"],
-      credentials:true
-  })); 
+const cors = require('cors');
+app.use(cors());
+
 
 //Datebas Connection with MongoDB
 const dotenv = require("dotenv");
