@@ -24,7 +24,7 @@ const AddProduct = () => {
         let product = productDetails;
         let formData = new FormData();
         formData.append('product',image);
-        await fetch('https://react-1a1u.onrender.com/upload',{
+        await fetch('https://react-1-5s5o.onrender.com/upload',{
           method:'POST',
           headers:{
             Accept:'application/json',
@@ -35,7 +35,7 @@ const AddProduct = () => {
         {
           product.image = responseData.image_url;
           console.log(product);
-          await fetch('https://react-1a1u.onrender.com/addproduct',{
+          await fetch('https://react-1-5s5o.onrender.com/addproduct',{
             method:'POST',
             headers:{
               Accept:'application/json',
