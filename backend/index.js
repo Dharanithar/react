@@ -22,14 +22,21 @@ app.use(cors({
 const dotenv = require("dotenv");
 dotenv.config(); // Ensure this line is added before using process.env
 
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
-    console.log("Connected to MongoDB successfully!");
-}).catch((error) => {
-    console.error("Error connecting to MongoDB:", error);
-});
+console.log("MONGO_URL:",process.env.MONGO_URL);
+
+const connectDB = async() =>{
+    try{
+        await mongoose.connect(process.env.MONGO_URL, {
+               useUnifiedTopology: true,
+            });
+            console.log("Connected to MongoDB successfully!");
+            } catch (error) {
+                console.error("Error connecting to MongoDB:", error.message);
+                process.exit(1);
+            }
+};
+
+connectDB();
 
 //API creation
 
@@ -50,14 +57,15 @@ const upload = multer({storage:storage})
 
 //Creating Upload Endpoint for Images
 
-app.use('/images',express.static('upload/images'))
+app.use('/images',express.static(path.join('upload/images')));
 
 app.post("/upload",upload.single('product'),(req,res)=>{
+    const imageUrl= `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     res.json({
         success:1,
-        image_url:`http://localhost:${port}/images/${req.file.filename}`
-    })
-})
+        image_url: imageUrl,
+    });
+});
 
 //Schema for Creating Products
 
