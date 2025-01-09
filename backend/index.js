@@ -116,6 +116,19 @@ app.get("/allproducts", async (req, res) => {
   res.json(products);
 });
 
+// Get New Collection
+app.get("/newcollection", async (req, res) => {
+  try {
+    // Example query: Fetch products in the "New" category
+    const newCollection = await Product.find({ category: "New" });
+    res.json(newCollection);
+  } catch (error) {
+    console.error("Error fetching new collection:", error);
+    res.status(500).json({ error: "Failed to fetch new collection" });
+  }
+});
+
+
 // The rest of your code for Users and other endpoints remains unchanged...
 
 app.listen(port, (error) => {
