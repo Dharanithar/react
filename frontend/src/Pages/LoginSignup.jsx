@@ -17,7 +17,7 @@ const changeHandler = (e) =>{
 const login = async()=>{
 console.log("Login Function Executed",formData);
 let responseData;
-  await fetch('http://localhost:4000/login',{
+  await fetch('https://react-1-5s5o.onrender.com/login',{
     method:'POST',
     headers:{
       Accept:'application/form-data',
@@ -36,7 +36,7 @@ let responseData;
 const signup = async()=>{
   console.log("Signup Function Executed",formData); 
   let responseData;
-  await fetch('http://localhost:4000/signup',{
+  await fetch('https://react-1-5s5o.onrender.com/signup',{
     method:'POST',
     headers:{
       Accept:'application/form-data',
