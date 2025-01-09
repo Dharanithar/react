@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import './Placeorder.css';
+import './PlaceOrder.css';
 import { ShopContext } from '../../Context/ShopContext';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
