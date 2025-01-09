@@ -55,14 +55,17 @@ const upload = multer({ storage: storage });
 // Serving Static Images
 app.use("/images", express.static(path.join("upload/images")));
 
+
 // Upload Endpoint for Images
 app.post("/upload", upload.single("product"), (req, res) => {
+  console.log("Uploaded file:", req.file); // Log the uploaded file info
   const imageUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
   res.json({
     success: 1,
     image_url: imageUrl,
   });
 });
+
 
 // Product Schema
 const Product = mongoose.model("Product", {
