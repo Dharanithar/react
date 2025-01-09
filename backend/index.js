@@ -55,17 +55,14 @@ const upload = multer({ storage: storage });
 // Serving Static Images
 app.use("/images", express.static(path.join("upload/images")));
 
-
 // Upload Endpoint for Images
 app.post("/upload", upload.single("product"), (req, res) => {
-  console.log("Uploaded file:", req.file); // Log the uploaded file info
   const imageUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
   res.json({
     success: 1,
     image_url: imageUrl,
   });
 });
-
 
 // Product Schema
 const Product = mongoose.model("Product", {
@@ -115,19 +112,6 @@ app.get("/allproducts", async (req, res) => {
   }));
   res.json(products);
 });
-
-// Get New Collection
-app.get("/newcollection", async (req, res) => {
-  try {
-    // Example query: Fetch products in the "New" category
-    const newCollection = await Product.find({ category: "New" });
-    res.json(newCollection);
-  } catch (error) {
-    console.error("Error fetching new collection:", error);
-    res.status(500).json({ error: "Failed to fetch new collection" });
-  }
-});
-
 
 // The rest of your code for Users and other endpoints remains unchanged...
 
