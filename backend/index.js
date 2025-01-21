@@ -240,7 +240,7 @@ app.post('/addtocart', fetchUser, async (req, res) => {
     }
 
     // Fetch user data
-    const userData = await Users.findOne({ _id: req.user.id });
+    const userData = await User.findOne({ _id: req.user.id });
     if (!userData) {
       return res.status(404).send({ error: "User not found" });
     }
@@ -275,7 +275,7 @@ app.post('/removefromcart', fetchUser, async (req, res) => {
     }
 
     // Fetch user data
-    const userData = await Users.findOne({ _id: req.user.id });
+    const userData = await User.findOne({ _id: req.user.id });
     if (!userData) {
       return res.status(404).send({ error: "User not found" });
     }
@@ -308,7 +308,7 @@ app.post('/removeonefromcart', fetchUser, async (req, res) => {
     }
 
     // Fetch user data
-    const userData = await Users.findOne({ _id: req.user.id });
+    const userData = await User.findOne({ _id: req.user.id });
     if (!userData) {
       return res.status(404).send({ error: "User not found" });
     }
@@ -334,7 +334,7 @@ app.post('/removeonefromcart', fetchUser, async (req, res) => {
 //creating endpoint for get products in cartdata
 app.post('/getcart', fetchUser, async (req, res) => {
   console.log("Getcart");
-  let userData = await Users.findOne({_id:req.user.id});
+  let userData = await User.findOne({_id:req.user.id});
   res.json(userData.cartData);
 });
 
